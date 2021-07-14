@@ -397,4 +397,23 @@
     }];
 }
 
+- (void)vitals_saveOxygenSaturation:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
+{
+    double oxygenSaturation = [RCTAppleHealthKit doubleValueFromOptions:input];
+    NSDate *sampleDate = [RCTAppleHealthKit dateFromOptionsDefaultNow:input];
+    HKUnit *oxygenSaturationUnit = [HKUnit percentUnit];
+
+    HKQuantity *oxygenSaturationQuantity = [HKQuantity quantityWithUnit:oxygenSaturationUnit doubleValue:oxygenSaturation];
+    HKQuantityType *oxygenSaturationType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierOxygenSaturation];
+    HKQuantitySample *oxygenSaturationSample = [HKQuantitySample quantitySampleWithType:oxygenSaturationType quantity:oxygenSaturationQuantity startDate:sampleDate endDate:sampleDate];
+
+    [self.healthStore saveObject:oxygenSaturationSample withCompletion:^(BOOL success, NSError *error) {
+        if (!success) {
+            callback(@[RCTJSErrorFromNSError(error)]);
+            return;
+        }
+        callback(@[[NSNull null], @(oxygenSaturation)]);
+    }];
+}
+
 @end

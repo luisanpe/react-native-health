@@ -21,5 +21,6 @@
 - (void)vitals_getOxygenSaturationSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 
 - (void)vitals_saveHeartRate:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
+- (void)vitals_saveOxygenSaturation:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 
 @end
