@@ -385,7 +385,7 @@
     HKUnit *heartRateUnit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[count unitDividedByUnit:minute]];
 
     HKQuantity *heartRateQuantity = [HKQuantity quantityWithUnit:heartRateUnit doubleValue:heartRate];
-    HKQuantityType *heartRateType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierRestingHeartRate];
+    HKQuantityType *heartRateType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeartRate];
     HKQuantitySample *heartRateSample = [HKQuantitySample quantitySampleWithType:heartRateType quantity:heartRateQuantity startDate:sampleDate endDate:sampleDate];
 
     [self.healthStore saveObject:heartRateSample withCompletion:^(BOOL success, NSError *error) {
