@@ -348,6 +348,16 @@ declare module 'react-native-health' {
       callback: (err: string, results: HealthValue) => void,
     ): void
 
+    saveOxygenSaturation(
+      options: HealthValueOptions,
+      callback: (err: string, results: HealthValue[]) => void
+    ): void
+
+    saveHeartRate(
+      options: HealthValueOptions,
+      callback: (err: string, results: HealthValue[]) => void
+    ): void
+
     setObserver(options: HealthObserverOptions): void
 
     Constants: Constants
